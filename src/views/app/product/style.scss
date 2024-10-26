@@ -1,0 +1,36 @@
+@import '@/theme/scss/colors.theme.scss';
+
+.hero-section {
+  background-color: $colors-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  min-height: 272px;
+  padding: 0 120px;
+
+  .content-section-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 42px;
+
+    &__title {
+      color: $colors-tertiary;
+      font-size: 34px;
+      font-weight: 700;
+      width: 70%;
+    }
+
+    &__button {
+      background-color: $colors-tertiary;
+      font-size: 16px;
+      color: #fff;
+      font-weight: 600;
+      padding: 15px 34px;
+      border-radius: 5px;
+      width: fit-content;
+      border-radius: 999px;
+    }
+  }
+}

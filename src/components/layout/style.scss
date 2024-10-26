@@ -1,0 +1,68 @@
+@import '@/theme/scss/colors.theme.scss';
+
+header {
+  position: relative;
+  // ipads
+  @media screen and (max-width: 1074px) {
+    .navbar-menu-wrapper {
+      display: none;
+    }
+
+    .nav-icon-wrapper {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: flex;
+      cursor: pointer;
+    }
+  }
+
+  // desktops
+  @media screen and (min-width: 1075px) {
+    .navbar-menu-wrapper {
+      display: flex;
+
+      &-open {
+        display: flex;
+      }
+    }
+
+    .nav-toggle {
+      display: none;
+    }
+  }
+
+  .nav-menu-open {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    color: black;
+    padding: 20px 0;
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+    cursor: pointer;
+    transform: translateY(0px);
+    opacity: 0.9;
+    transition: transform 1s ease, opacity s ease;
+
+    li {
+      padding: 10px 0;
+    }
+
+    li:hover {
+      background-color: black;
+      color: #fff;
+    }
+  }
+
+  .nav-menu-hidden {
+    display: none;
+  }
+}
