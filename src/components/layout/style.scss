@@ -1,5 +1,4 @@
-@import '@/theme/scss/colors.theme.scss';
-
+@use '@/theme/scss/colors.theme.scss' as *;
 header {
   position: relative;
   // ipads
@@ -57,7 +56,7 @@ header {
     }
 
     li:hover {
-      background-color: black;
+      background-color: $colors-secondary;
       color: #fff;
     }
   }

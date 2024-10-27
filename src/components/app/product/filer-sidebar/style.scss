@@ -1,0 +1,35 @@
+@use '@/theme/scss/colors.theme.scss' as *;
+
+.filter-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+
+    p {
+      font-size: 20px;
+      font-weight: 500;
+      color: $colors-text-primary;
+    }
+
+    button {
+      font-size: 14px;
+      color: $colors-text-tertiary;
+      border-radius: 28px;
+      border: 1px solid #ccc;
+      padding: 8px 20px;
+    }
+  }
+
+  &__wrapper {
+    border-radius: 8px;
+    border: 1px solid #f3f3f3;
+    height: 100vh;
+    padding: 18px;
+  }
+}
