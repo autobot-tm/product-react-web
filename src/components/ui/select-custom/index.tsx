@@ -40,7 +40,14 @@ const SelectCustom: React.FC<{ onChange: (category: string) => void }> = ({ onCh
     <div className='select-custom'>
       <details className='custom-select'>
         <summary className='radios'>
-          <input type='radio' name='item' id='all' title='All' defaultChecked onChange={handleCategoryChange} />
+          <input
+            type='radio'
+            name='item'
+            id='popularity'
+            title='Popularity'
+            defaultChecked
+            onChange={handleCategoryChange}
+          />
           {category.map((cat, index) => (
             <input
               key={index}

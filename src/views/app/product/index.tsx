@@ -19,7 +19,7 @@ const ProductManagement: React.FC = () => {
   const [products, setProducts] = useState<IProduct[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isError, setIsError] = useState<boolean>(false)
-  const [selectedCategory, setSelectedCategory] = useState<string>('all')
+  const [selectedCategory, setSelectedCategory] = useState<string>('popularity')
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -72,9 +72,7 @@ const ProductManagement: React.FC = () => {
 
           {isLoading && <LazyLoading />}
           <div className='product-management-wrapper__result-list'>
-            {products.map(product => (
-              <CardItem key={product.id} {...product} />
-            ))}
+            {products && products.map(product => <CardItem key={product.id} {...product} />)}
           </div>
         </div>
       </div>

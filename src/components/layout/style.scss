@@ -1,4 +1,5 @@
 @use '@/theme/scss/colors.theme.scss' as *;
+
 header {
   position: relative;
   // ipads
@@ -64,4 +65,8 @@ header {
   .nav-menu-hidden {
     display: none;
   }
+}
+
+footer {
+  background: $colors-secondary;
 }

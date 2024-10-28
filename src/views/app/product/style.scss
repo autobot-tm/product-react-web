@@ -1,7 +1,7 @@
 @use '@/theme/scss/colors.theme.scss' as *;
 
 .hero-section {
-  background-color: $colors-secondary;
+  background: $colors-secondary;
   height: auto;
   min-height: 272px;
   width: 100%;
