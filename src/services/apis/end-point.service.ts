@@ -1,6 +1,7 @@
 export const ENDPOINTS = {
   product: {
     base: 'https://fakestoreapi.com/products',
-    categorys: 'https://fakestoreapi.com/products/categories'
+    categories: 'https://fakestoreapi.com/products/categories',
+    category: (category: string) => `https://fakestoreapi.com/products/category/${category}`
   }
 }

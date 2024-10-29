@@ -1,14 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import SelectCustom from '@/components/ui/select-custom'
+import SelectLabels from '@/components/ui/select-custom'
+
+import { getAllCategory } from '@/services/apis/product.service'
+import type { ProductCategory } from '@/types'
 
 import './style.scss'
 
-const CategoryTopbar: React.FC<{ category: (category: string) => void }> = ({ category }) => {
+interface ICategoryTopbar {
+  onSelect: (onSelect: string) => void
+  selectedCategory: string
+  totalProduct: number
+}
+
+const CategoryTopbar: React.FC<ICategoryTopbar> = ({ onSelect, selectedCategory, totalProduct }) => {
+  const [categories, setCategories] = useState<ProductCategory[]>([])
+
+  const renderCategory = async () => {
+    try {
+      const response = await getAllCategory()
+      console.log(response)
+      setCategories(response)
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
+
+  useEffect(() => {
+    renderCategory()
+  }, [])
+
+  const getResultText = (count: number) => {
+    return count === 1 ? 'result' : 'results'
+  }
+
   return (
     <div className='category-topbar'>
-      <p>Showing 12 Result from total 230</p>
-      <SelectCustom onChange={category} />
+      <p>
+        Showing {totalProduct} {getResultText(totalProduct)}
+      </p>
+      <SelectLabels onChange={onSelect} categories={categories} selectedCategory={selectedCategory || ''} />
     </div>
   )
 }

@@ -1,53 +1,40 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import useSWR from 'swr'
 
 import type { IProduct } from '@/types'
 
-import FilterSidebar from '@/components/app/product/filer-sidebar'
 import CategoryTopbar from '@/components/app/product/category-topbar'
-import CardItem from '@/components/app/product/card-item'
 import LazyLoading from '@/components/LazyLoading'
+import FilterSidebar from '@/components/app/product/filer-sidebar'
+import CardItem from '@/components/app/product/card-item'
 
-import { getProducts } from '@/services/apis/product.service'
+import { getProducts as fetchProducts } from '@/services/apis/product.service'
+import { getCategory } from '@/utils/getCategory'
+import { ENDPOINTS } from '@/services/apis/end-point.service'
 
 import { heroImg } from '@/assets/png'
 import './style.scss'
-import { getCategory } from '@/utils/getCategory'
 
 const ProductManagement: React.FC = () => {
-  const [products, setProducts] = useState<IProduct[]>([])
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isError, setIsError] = useState<boolean>(false)
   const [selectedCategory, setSelectedCategory] = useState<string>('popularity')
+  const {
+    data: products = [],
+    error,
+    isLoading
+  } = useSWR(ENDPOINTS.product.categories, fetchProducts, { revalidateOnFocus: false })
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setIsLoading(true)
-        const rs = await getProducts()
-        console.log(rs)
-        setProducts(rs)
-      } catch (error) {
-        console.log(error)
-        setIsError(true)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchProducts()
-  }, [])
+  const filteredProducts = products?.filter((product: IProduct) => {
+    const category = getCategory(product.category)
+    return category === selectedCategory || selectedCategory === 'popularity'
+  })
 
-  useEffect(() => {
-    if (selectedCategory) {
-      console.log(getCategory(selectedCategory))
-    }
-  }, [selectedCategory])
-
-  if (isError) return <div>ERROR</div>
+  if (error) return <p className='text-center font-bold text-2xl'>404</p>
 
   return (
     <>
+      {isLoading && <LazyLoading />}
       <div className='hero-section'>
         <div className='hero-section__wrapper'>
           <span className='content-section-wrapper'>
@@ -67,12 +54,16 @@ const ProductManagement: React.FC = () => {
 
         <div className='product-management-wrapper__result'>
           <div className='product-management-wrapper__result-category'>
-            <CategoryTopbar category={setSelectedCategory} />
+            <CategoryTopbar
+              totalProduct={filteredProducts?.length}
+              onSelect={setSelectedCategory}
+              selectedCategory={selectedCategory}
+            />
           </div>
 
-          {isLoading && <LazyLoading />}
           <div className='product-management-wrapper__result-list'>
-            {products && products.map(product => <CardItem key={product.id} {...product} />)}
+            {filteredProducts &&
+              filteredProducts?.map((product: IProduct) => <CardItem key={product.id} {...product} />)}
           </div>
         </div>
       </div>

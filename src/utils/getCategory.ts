@@ -1,13 +1,13 @@
 import { CATEGORY_PRODUCT } from '@/constants/product.constanst'
 
 export const getCategory = (category: string) => {
-  return category === 'item0'
+  return category === CATEGORY_PRODUCT.ELECTRONICS
     ? CATEGORY_PRODUCT.ELECTRONICS
-    : category === 'item1'
+    : category === CATEGORY_PRODUCT.JEWELERY
     ? CATEGORY_PRODUCT.JEWELERY
-    : category === 'item2'
+    : category === CATEGORY_PRODUCT.MEN
     ? CATEGORY_PRODUCT.MEN
-    : category === 'item3'
+    : category === CATEGORY_PRODUCT.WOMEN
     ? CATEGORY_PRODUCT.WOMEN
-    : 'all'
+    : 'popularity'
 }

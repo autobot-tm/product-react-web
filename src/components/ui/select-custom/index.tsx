@@ -1,77 +1,34 @@
-'use client'
-
-import React, { useCallback, useEffect, useState } from 'react'
-
+import * as React from 'react'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 import type { ProductCategory } from '@/types'
+import { getCategory } from '@/utils/getCategory'
 
-import { getAllCategory } from '@/services/apis/product.service'
-
-import './style.scss'
-
-// tham khảo
-const SelectCustom: React.FC<{ onChange: (category: string) => void }> = ({ onChange }) => {
-  const [category, setCategory] = useState<ProductCategory[]>()
-
-  const renderCatergory = async () => {
-    try {
-      const response = await getAllCategory()
-      console.log(response)
-
-      setCategory(response)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    renderCatergory()
-  }, [])
-
-  const handleCategoryChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      onChange(event.target.id)
-    },
-    [onChange]
-  )
-
-  if (!category) return ''
-
-  return (
-    <div className='select-custom'>
-      <details className='custom-select'>
-        <summary className='radios'>
-          <input
-            type='radio'
-            name='item'
-            id='popularity'
-            title='Popularity'
-            defaultChecked
-            onChange={handleCategoryChange}
-          />
-          {category.map((cat, index) => (
-            <input
-              key={index}
-              type='radio'
-              name='item'
-              id={`item${index}`}
-              title={cat}
-              onChange={handleCategoryChange}
-            />
-          ))}
-        </summary>
-        <ul className='list'>
-          {category.map((cat, index) => (
-            <li key={cat}>
-              <label htmlFor={`item${index}`}>
-                {cat}
-                <span></span>
-              </label>
-            </li>
-          ))}
-        </ul>
-      </details>
-    </div>
-  )
+interface ISelectCustom {
+  onChange: (onChange: string) => void
+  categories: ProductCategory[]
+  selectedCategory: string
 }
 
-export default SelectCustom
+export default function SelectLabels({ onChange, categories, selectedCategory }: ISelectCustom) {
+  const handleChange = (event: SelectChangeEvent) => {
+    const category = getCategory(event.target.value)
+    onChange(category)
+  }
+
+  return (
+    <FormControl sx={{ m: 1, minWidth: 140 }}>
+      <Select value={selectedCategory} onChange={handleChange} sx={{ textTransform: 'capitalize' }}>
+        <MenuItem value='popularity'>
+          <em>Popularity</em>
+        </MenuItem>
+        {categories.map((category, index) => (
+          <MenuItem key={index} value={category} sx={{ textTransform: 'capitalize' }}>
+            {category}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  )
+}
