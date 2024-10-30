@@ -51,7 +51,7 @@ const ProductManagement: React.FC = () => {
     data: products = [],
     error,
     isLoading
-  } = useSWR(ENDPOINTS.product.categories, fetchProducts, { revalidateOnFocus: false })
+  } = useSWR(ENDPOINTS.product.base, fetchProducts, { revalidateOnFocus: false })
 
   const filteredProducts = products?.filter((product: IProduct) => {
     const category = getCategory(product.category)
@@ -88,11 +88,12 @@ const ProductManagement: React.FC = () => {
     console.log(filter)
   }
 
+  if (isLoading) return <LazyLoading />
+
   if (error) return <p className='text-center font-bold'>404</p>
 
   return (
     <>
-      {isLoading && <LazyLoading />}
       <div className='hero-section'>
         <div className='hero-section__wrapper'>
           <span className='content-section-wrapper'>

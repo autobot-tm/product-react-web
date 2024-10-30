@@ -7,6 +7,7 @@ import NotificationIcon from '@/assets/svg/Notification'
 
 import '@/components/layout/style.scss'
 import { navPop } from '@/assets/png'
+import Link from 'next/link'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -29,9 +30,11 @@ const Header = () => {
       </div>
 
       <div className='nav-icon-wrapper flex items-center gap-[18px]'>
-        <figure className='cursor-pointer h-[50px] w-[50px] bg-[#F5F1EE] rounded-full flex items-center justify-center'>
-          <CartIcon />
-        </figure>
+        <Link href='/cart'>
+          <figure className='cursor-pointer h-[50px] w-[50px] bg-[#F5F1EE] rounded-full flex items-center justify-center'>
+            <CartIcon />
+          </figure>
+        </Link>
         <figure className='cursor-pointer h-[50px] w-[50px] bg-[#EEEFF8] rounded-full flex items-center justify-center'>
           <NotificationIcon />
         </figure>

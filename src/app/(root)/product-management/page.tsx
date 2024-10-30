@@ -6,7 +6,7 @@ const ProductManagement = dynamic(() => import('@/views/app/product'), {
   loading: () => <LazyLoading />
 })
 
-const ProductManagementPage: React.FC = () => {
+const ProductManagementPage: React.FC = async () => {
   return <ProductManagement />
 }
 

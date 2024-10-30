@@ -16,7 +16,7 @@ interface ISelectCustom {
   selectedValue: string
 }
 
-export default function SelectCustom({ onChange, options, selectedValue }: ISelectCustom) {
+export default function SelectCustom({ onChange, options = [], selectedValue }: ISelectCustom) {
   const handleChange = useCallback(
     (event: SelectChangeEvent) => {
       const selectedOption = event.target.value

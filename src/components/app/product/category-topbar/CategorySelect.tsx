@@ -11,14 +11,11 @@ interface ISelectCustom {
   selectedCategory: string
 }
 
-export default function CategorySelect({ onChange, categories, selectedCategory }: ISelectCustom) {
-  const handleChange = useCallback(
-    (event: SelectChangeEvent) => {
-      const category = getCategory(event.target.value)
-      onChange(category)
-    },
-    [onChange]
-  )
+export default function CategorySelect({ onChange, categories = [], selectedCategory }: ISelectCustom) {
+  const handleChange = useCallback((event: SelectChangeEvent) => {
+    const category = getCategory(event.target.value)
+    onChange(category)
+  }, [])
 
   return (
     <FormControl sx={{ m: 1, minWidth: 100 }}>
