@@ -1,31 +1,36 @@
-import * as React from 'react'
+import React, { useCallback } from 'react'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import type { ProductCategory } from '@/types'
-import { getCategory } from '@/utils/getCategory'
+
+import './style.scss'
+
+interface ISelectOption {
+  value: string
+  label: string
+}
 
 interface ISelectCustom {
   onChange: (onChange: string) => void
-  categories: ProductCategory[]
-  selectedCategory: string
+  options: ISelectOption[]
+  selectedValue: string
 }
 
-export default function SelectLabels({ onChange, categories, selectedCategory }: ISelectCustom) {
-  const handleChange = (event: SelectChangeEvent) => {
-    const category = getCategory(event.target.value)
-    onChange(category)
-  }
+export default function SelectCustom({ onChange, options, selectedValue }: ISelectCustom) {
+  const handleChange = useCallback(
+    (event: SelectChangeEvent) => {
+      const selectedOption = event.target.value
+      onChange(selectedOption)
+    },
+    [onChange]
+  )
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 140 }}>
-      <Select value={selectedCategory} onChange={handleChange} sx={{ textTransform: 'capitalize' }}>
-        <MenuItem value='popularity'>
-          <em>Popularity</em>
-        </MenuItem>
-        {categories.map((category, index) => (
-          <MenuItem key={index} value={category} sx={{ textTransform: 'capitalize' }}>
-            {category}
+    <FormControl className='select-custom'>
+      <Select value={selectedValue} onChange={handleChange} sx={{ textTransform: 'capitalize', borderRadius: 28 }}>
+        {options.map(option => (
+          <MenuItem key={option.value} value={option.value} sx={{ textTransform: 'capitalize' }}>
+            {option.label}
           </MenuItem>
         ))}
       </Select>

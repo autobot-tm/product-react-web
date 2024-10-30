@@ -4,6 +4,13 @@
   align-items: center;
   height: 36px;
   font-style: 14px;
+  width: 100%;
+
+  &__select {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
   select {
     padding: 8px 14px;

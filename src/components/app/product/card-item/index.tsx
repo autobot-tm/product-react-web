@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Image from 'next/image'
+
 import type { IProduct } from '@/types/product'
 import { Rating } from '@mui/material'
 
@@ -9,12 +11,12 @@ const CardItem: React.FC<IProduct> = ({ id, image, title, price, category, ratin
   return (
     <div className='card-item'>
       <figure className='card-item__header'>
-        <img src={image} alt={title} />
+        <Image src={image} alt={title} width={200} height={200} priority />
       </figure>
       <div className='card-item__content'>
         <span className='card-item__content__title'>
           <p>{title}</p>
-          <p>₹ {price}</p>
+          <p>$ {price}</p>
         </span>
         <span className='card-item__content__rating'>
           <Rating value={rating.rate} readOnly precision={0.5} size='small' />
