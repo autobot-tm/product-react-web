@@ -27,7 +27,12 @@ export default function SelectCustom({ onChange, options, selectedValue }: ISele
 
   return (
     <FormControl className='select-custom'>
-      <Select value={selectedValue} onChange={handleChange} sx={{ textTransform: 'capitalize', borderRadius: 28 }}>
+      <Select
+        value={selectedValue}
+        onChange={handleChange}
+        sx={{ textTransform: 'capitalize', borderRadius: 28 }}
+        size='small'
+      >
         {options.map(option => (
           <MenuItem key={option.value} value={option.value} sx={{ textTransform: 'capitalize' }}>
             {option.label}

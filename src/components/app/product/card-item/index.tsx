@@ -11,7 +11,7 @@ const CardItem: React.FC<IProduct> = ({ id, image, title, price, category, ratin
   return (
     <div className='card-item'>
       <figure className='card-item__header'>
-        <Image src={image} alt={title} width={200} height={200} priority />
+        <Image src={image} alt={title} width={200} height={200} priority blurDataURL={image} />
       </figure>
       <div className='card-item__content'>
         <span className='card-item__content__title'>

@@ -37,7 +37,14 @@ const Header = () => {
         </figure>
         <div className='flex items-center gap-[14px]'>
           <figure className='cursor-pointer h-[50px] w-[50px] bg-[#EEEFF8] rounded-full flex items-center justify-center'>
-            <Image src='https://avatar.iran.liara.run/public/5' alt='avatar' width={50} height={50} priority />
+            <Image
+              src='https://avatar.iran.liara.run/public/5'
+              alt='avatar'
+              width={50}
+              height={50}
+              priority
+              blurDataURL='https://avatar.iran.liara.run/public/5'
+            />
           </figure>
           <span>
             <p className='text-[12px] text-[#C0C3C6]'>Good Morning!</p>

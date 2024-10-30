@@ -22,7 +22,12 @@ export default function CategorySelect({ onChange, categories, selectedCategory 
 
   return (
     <FormControl sx={{ m: 1, minWidth: 100 }}>
-      <Select value={selectedCategory} onChange={handleChange} sx={{ textTransform: 'capitalize', borderRadius: 28 }}>
+      <Select
+        value={selectedCategory}
+        onChange={handleChange}
+        sx={{ textTransform: 'capitalize', borderRadius: 28 }}
+        size='small'
+      >
         <MenuItem value='popularity'>
           <em>Popularity</em>
         </MenuItem>

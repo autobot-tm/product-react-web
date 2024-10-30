@@ -19,6 +19,8 @@ import { ENDPOINTS } from '@/services/apis/end-point.service'
 import { emptyArchive, heroImg } from '@/assets/png'
 
 import './style.scss'
+import { IconButton, TextField } from '@mui/material'
+import { SearchOutlined } from '@mui/icons-material'
 
 export type FilterType = {
   rating: string | null
@@ -28,6 +30,7 @@ export type FilterType = {
 
 const ProductManagement: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('popularity')
+  const [searchQuery, setSearchQuery] = useState<string>('')
   const [filters, setFilters] = useState<FilterType>({
     rating: '0.5',
     price: 1000,
@@ -55,8 +58,9 @@ const ProductManagement: React.FC = () => {
     const matchesCategory = category === selectedCategory || selectedCategory === 'popularity'
     const matchesRating = filters.rating ? product.rating.rate >= Number(filters.rating) : true
     const matchesPrice = product.price <= filters.price
+    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase())
 
-    return matchesCategory && matchesRating && matchesPrice
+    return matchesCategory && matchesRating && matchesPrice && matchesSearch
   })
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
@@ -96,42 +100,64 @@ const ProductManagement: React.FC = () => {
             <button className='content-section-wrapper__button'>Buy Now</button>
           </span>
           <figure style={{ width: 'auto' }}>
-            <Image src={heroImg.src} alt='hero-img' width={274} height={300} priority />
+            <Image src={heroImg.src} alt='hero-img' width={274} height={300} priority blurDataURL={heroImg.src} />
           </figure>
         </div>
       </div>
 
-      <div className='product-management-wrapper'>
-        <div className='product-management-wrapper__filter'>
-          <FilterSidebar
-            filters={filters}
-            setSelectedCategory={setSelectedCategory}
-            onFilterChange={handleFilterChange}
+      <div className='product-management'>
+        <div className='product-management__search-bar'>
+          <TextField
+            onChange={e => {
+              setSearchQuery(e.target.value)
+            }}
+            variant='outlined'
+            placeholder='Search...'
+            size='small'
+            className='search-input'
           />
+          <IconButton type='submit' aria-label='search'>
+            <SearchOutlined style={{ fill: '#0d3356' }} />
+          </IconButton>
         </div>
 
-        <div className='product-management-wrapper__result'>
-          <div className='product-management-wrapper__result-category'>
-            <CategoryTopbar
+        <div className='product-management-wrapper'>
+          <div className='product-management-wrapper__filter'>
+            <FilterSidebar
               filters={filters}
+              setSelectedCategory={setSelectedCategory}
               onFilterChange={handleFilterChange}
-              totalProduct={sortedProducts?.length}
-              onSelect={setSelectedCategory}
-              selectedCategory={selectedCategory}
             />
           </div>
-
-          {filteredProducts?.length ? (
-            <div className='product-management-wrapper__result-list'>
-              {sortedProducts?.map((product: IProduct) => (
-                <CardItem key={product.id} {...product} />
-              ))}
+          <div className='product-management-wrapper__result'>
+            <div className='product-management-wrapper__result-category'>
+              <CategoryTopbar
+                filters={filters}
+                onFilterChange={handleFilterChange}
+                totalProduct={sortedProducts?.length}
+                onSelect={setSelectedCategory}
+                selectedCategory={selectedCategory}
+              />
             </div>
-          ) : (
-            <figure className='flex justify-center items-center'>
-              <Image src={emptyArchive.src} alt='empty-archive' width={50} height={50} priority />
-            </figure>
-          )}
+            {filteredProducts?.length ? (
+              <div className='product-management-wrapper__result-list'>
+                {sortedProducts?.map((product: IProduct) => (
+                  <CardItem key={product.id} {...product} />
+                ))}
+              </div>
+            ) : (
+              <figure className='flex justify-center items-center'>
+                <Image
+                  src={emptyArchive.src}
+                  alt='empty-archive'
+                  width={50}
+                  height={50}
+                  priority
+                  blurDataURL={emptyArchive.src}
+                />
+              </figure>
+            )}
+          </div>
         </div>
       </div>
     </>
