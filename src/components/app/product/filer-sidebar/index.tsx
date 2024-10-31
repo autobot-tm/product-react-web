@@ -14,23 +14,29 @@ interface FilterSidebarProps {
 
 const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, setSelectedCategory }) => {
   //rating change by radio
-  const handleRatingChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const ratingChange = (event.target as HTMLInputElement).value
-    onFilterChange({ ...filters, rating: ratingChange })
-  }, [])
+  const handleRatingChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const ratingChange = (event.target as HTMLInputElement).value
+      onFilterChange({ ...filters, rating: ratingChange })
+    },
+    [onFilterChange]
+  )
 
   //price change by slider
-  const handlePriceChange = useCallback((event: Event, newValue: number | number[]) => {
-    event.preventDefault()
-    const priceChange = newValue as number
-    onFilterChange({ ...filters, price: priceChange })
-  }, [])
+  const handlePriceChange = useCallback(
+    (event: Event, newValue: number | number[]) => {
+      event.preventDefault()
+      const priceChange = newValue as number
+      onFilterChange({ ...filters, price: priceChange })
+    },
+    [onFilterChange]
+  )
 
   //reset all filter
   const handleClearAll = useCallback(() => {
     setSelectedCategory('popularity')
     onFilterChange({ rating: '0.5', price: 1000, sortOrder: 'lth' })
-  }, [])
+  }, [onFilterChange])
 
   return (
     <div className='filter-sidebar'>

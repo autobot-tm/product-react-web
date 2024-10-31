@@ -42,6 +42,10 @@ export const cartSlice = createSlice({
       } else if (existingItem && quantity <= 0) {
         state.items = state.items.filter(item => item.product.id !== productId)
       }
+    },
+
+    clearCart: state => {
+      state.items = []
     }
   }
 })

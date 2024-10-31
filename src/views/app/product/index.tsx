@@ -1,26 +1,26 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import useSWR from 'swr'
 
 import Image from 'next/image'
 
+import { IconButton, TextField } from '@mui/material'
+import { SearchOutlined } from '@mui/icons-material'
+
 import type { IProduct } from '@/types'
 
-import CategoryTopbar from '@/components/app/product/category-topbar'
 import LazyLoading from '@/components/LazyLoading'
 import FilterSidebar from '@/components/app/product/filer-sidebar'
-import CardItem from '@/components/app/product/card-item'
+import ProductItem from '@/components/app/product/product-item'
+import CategoryTopbar from '@/components/app/product/category-topbar'
 
 import { getProducts } from '@/services/apis/product.service'
 import { getCategory } from '@/utils/getCategory'
 import { ENDPOINTS } from '@/services/apis/end-point.service'
 
 import { emptyArchive, heroImg } from '@/assets/png'
-
 import './style.scss'
-import { IconButton, TextField } from '@mui/material'
-import { SearchOutlined } from '@mui/icons-material'
 
 export type FilterType = {
   rating: string | null
@@ -53,39 +53,47 @@ const ProductManagement: React.FC = () => {
     isLoading
   } = useSWR(ENDPOINTS.product.base, fetchProducts, { revalidateOnFocus: false })
 
-  const filteredProducts = products?.filter((product: IProduct) => {
-    const category = getCategory(product.category)
-    const matchesCategory = category === selectedCategory || selectedCategory === 'popularity'
-    const matchesRating = filters.rating ? product.rating.rate >= Number(filters.rating) : true
-    const matchesPrice = product.price <= filters.price
-    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredProducts = useMemo(() => {
+    return products?.filter((product: IProduct) => {
+      const category = getCategory(product.category || '')
+      const matchesCategory = category === selectedCategory || selectedCategory === 'popularity'
+      const matchesRating = filters.rating
+        ? product.rating?.rate !== undefined && product.rating.rate >= Number(filters.rating)
+        : true
+      const matchesPrice = product.price <= filters.price
+      const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase())
 
-    return matchesCategory && matchesRating && matchesPrice && matchesSearch
-  })
+      return matchesCategory && matchesRating && matchesPrice && matchesSearch
+    })
+  }, [products, selectedCategory, filters, searchQuery])
 
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (filters.sortOrder === 'rth') {
-      return b.rating.rate - a.rating.rate
-    }
+  const sortedProducts = useMemo(() => {
+    return [...filteredProducts].sort((a, b) => {
+      if (filters.sortOrder === 'rth') {
+        return b.rating.rate - a.rating.rate
+      }
 
-    if (filters.sortOrder === 'az') {
-      return (a.title || '').localeCompare(b.title || '') //a-z
-    } else if (filters.sortOrder === 'za') {
-      return (b.title || '').localeCompare(a.title || '') //z-a
-    }
+      if (filters.sortOrder === 'az') {
+        return (a.title || '').localeCompare(b.title || '') // a-z
+      } else if (filters.sortOrder === 'za') {
+        return (b.title || '').localeCompare(a.title || '') // z-a
+      }
 
-    if (filters.sortOrder === 'lth') {
-      return a.price - b.price
-    } else if (filters.sortOrder === 'htl') {
-      return b.price - a.price
-    }
+      if (filters.sortOrder === 'lth') {
+        return a.price - b.price
+      } else if (filters.sortOrder === 'htl') {
+        return b.price - a.price
+      }
 
-    return 0
-  })
+      return 0
+    })
+  }, [filteredProducts, filters.sortOrder])
 
-  const handleFilterChange = (filter: FilterType) => {
-    setFilters(filter)
-    console.log(filter)
+  const handleFilterChange = (newFilter: Partial<FilterType>) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      ...newFilter
+    }))
   }
 
   if (isLoading) return <LazyLoading />
@@ -101,7 +109,15 @@ const ProductManagement: React.FC = () => {
             <button className='content-section-wrapper__button'>Buy Now</button>
           </span>
           <figure style={{ width: 'auto' }}>
-            <Image src={heroImg.src} alt='hero-img' width={274} height={300} priority blurDataURL={heroImg.src} />
+            <Image
+              src={heroImg.src}
+              alt='hero-img'
+              width={274}
+              height={300}
+              priority
+              blurDataURL={heroImg.src}
+              style={{ width: 'auto', height: 'auto' }}
+            />
           </figure>
         </div>
       </div>
@@ -143,7 +159,7 @@ const ProductManagement: React.FC = () => {
             {filteredProducts?.length ? (
               <div className='product-management-wrapper__result-list'>
                 {sortedProducts?.map((product: IProduct) => (
-                  <CardItem key={product.id} {...product} />
+                  <ProductItem key={product.id} {...product} />
                 ))}
               </div>
             ) : (

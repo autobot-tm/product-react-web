@@ -1,6 +1,6 @@
 interface IRating {
-  rate: number
-  count: number
+  rate?: number
+  count?: number
 }
 
 export interface IProduct {
@@ -8,8 +8,8 @@ export interface IProduct {
   image: string
   title: string
   price: number
-  category: string
-  rating: IRating
+  category?: string
+  rating?: IRating
 }
 
 export type ProductCategory = "men's clothing" | "women's clothing" | 'jewelery' | 'electronics'

@@ -1,14 +1,18 @@
 'use client'
 
-import Footer from '@/components/layout/Footer'
-import Header from '@/components/layout/Header'
-import ScrollToTop from '@/components/ScrollToTop'
+import React from 'react'
+
 import { Button } from '@mui/material'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 
+import Footer from '@/components/layout/Footer'
+import Header from '@/components/layout/Header'
+import Providers from '@/components/Provider'
+import ScrollToTop from '@/components/ScrollToTop'
+
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <main>
+    <Providers>
       <Header />
       {children}
       <Footer />
@@ -17,6 +21,6 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
           <ArrowUpwardIcon />
         </Button>
       </ScrollToTop>
-    </main>
+    </Providers>
   )
 }

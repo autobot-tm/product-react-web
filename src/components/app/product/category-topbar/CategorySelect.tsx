@@ -1,10 +1,14 @@
+'use client'
+
 import React, { useCallback } from 'react'
+
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import type { ProductCategory } from '@/types'
-import { getCategory } from '@/utils/getCategory'
 
+import type { ProductCategory } from '@/types'
+
+import { getCategory } from '@/utils/getCategory'
 interface ISelectCustom {
   onChange: (onChange: string) => void
   categories: ProductCategory[]

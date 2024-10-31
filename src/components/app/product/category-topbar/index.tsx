@@ -1,23 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback } from 'react'
 
+import useSWR from 'swr'
+
+import SelectCustom from '@/components/ui/select-custom'
 import CategorySelect from './CategorySelect'
 
+import { ENDPOINTS } from '@/services/apis/end-point.service'
 import { getAllCategory } from '@/services/apis/product.service'
 
 import type { FilterType } from '@/views/app/product'
+import { SORT_OPTIONS } from '@/constants/sortOptions.constant'
 
 import './style.scss'
-import SelectCustom from '@/components/ui/select-custom'
-import useSWR from 'swr'
-import { ENDPOINTS } from '@/services/apis/end-point.service'
-
-const sortOptions = [
-  { value: 'lth', label: 'Price-low to high' },
-  { value: 'htl', label: 'Price-high to low' },
-  { value: 'rth', label: 'Rating-high to low' },
-  { value: 'az', label: 'Name-A to Z' },
-  { value: 'za', label: 'Name-Z to A' }
-]
 
 interface ICategoryTopbar {
   onSelect: (onSelect: string) => void
@@ -37,8 +31,6 @@ const CategoryTopbar: React.FC<ICategoryTopbar> = ({
   const renderCategory = async () => {
     try {
       const response = await getAllCategory()
-      console.log(response)
-
       return response
     } catch (error) {
       console.log(error)
@@ -50,15 +42,20 @@ const CategoryTopbar: React.FC<ICategoryTopbar> = ({
     revalidateOnFocus: false
   })
 
-  const handleSortChange = useCallback((event: string) => {
-    onFilterChange({ ...filters, sortOrder: event })
-  }, [])
+  const handleSortChange = useCallback(
+    (event: string) => {
+      onFilterChange({ ...filters, sortOrder: event })
+    },
+    [onFilterChange]
+  )
 
   const getResultText = (count: number) => {
     return count === 1 ? 'result' : 'results'
   }
 
-  if (isLoading) return 'Nothing'
+  if (isLoading) return 'Loading...'
+
+  if (categories.length === 0) return 'No category found'
 
   return (
     <div className='category-topbar'>
@@ -67,7 +64,7 @@ const CategoryTopbar: React.FC<ICategoryTopbar> = ({
       </p>
       <div className='category-topbar__select'>
         <CategorySelect onChange={onSelect} categories={categories} selectedCategory={selectedCategory || ''} />
-        <SelectCustom onChange={handleSortChange} options={sortOptions} selectedValue={filters.sortOrder} />
+        <SelectCustom onChange={handleSortChange} options={SORT_OPTIONS} selectedValue={filters.sortOrder} />
       </div>
     </div>
   )
