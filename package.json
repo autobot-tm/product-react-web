@@ -22,6 +22,8 @@
     "react-loading-indicators": "^1.0.0",
     "react-redux": "^9.1.2",
     "react-window": "^1.8.10",
+    "sass": "^1.54.0",
+    "sass-loader": "^13.3.3",
     "swr": "^2.2.5"
   },
   "devDependencies": {
@@ -36,8 +38,6 @@
     "eslint-plugin-react": "^7.37.2",
     "globals": "^15.11.0",
     "postcss": "^8",
-    "sass": "^1.80.4",
-    "sass-loader": "^16.0.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "typescript-eslint": "^8.11.0"
