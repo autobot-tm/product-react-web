@@ -9,8 +9,13 @@ const initialState: ICartState = {
 }
 
 const initialCartState = (): ICartState => {
-  const storedCart = localStorage.getItem('cart')
-  return storedCart ? JSON.parse(storedCart) : initialState
+  if (typeof window !== 'undefined') {
+    const storedCart = localStorage.getItem('cart')
+
+    return storedCart ? JSON.parse(storedCart) : initialState
+  }
+
+  return initialState
 }
 
 export const cartSlice = createSlice({
