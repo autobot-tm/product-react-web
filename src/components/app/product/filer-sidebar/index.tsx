@@ -60,90 +60,90 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
                 value='5'
                 control={<Radio />}
                 label={
-                  <>
+                  <div className='filter-sidebar__wrapper__rating__list__item'>
                     <Rating value={5} readOnly size='small' precision={0.5} /> 5 & up
-                  </>
+                  </div>
                 }
               />
               <FormControlLabel
                 value='4.5'
                 control={<Radio />}
                 label={
-                  <>
+                  <div className='filter-sidebar__wrapper__rating__list__item'>
                     <Rating value={4.5} readOnly size='small' precision={0.5} /> 4.5 & up
-                  </>
+                  </div>
                 }
               />
               <FormControlLabel
                 value='4'
                 control={<Radio />}
                 label={
-                  <>
+                  <div className='filter-sidebar__wrapper__rating__list__item'>
                     <Rating value={4} readOnly size='small' precision={0.5} /> 4 & up
-                  </>
+                  </div>
                 }
               />
               <FormControlLabel
                 value='3.5'
                 control={<Radio />}
                 label={
-                  <>
+                  <div className='filter-sidebar__wrapper__rating__list__item'>
                     <Rating value={3.5} readOnly size='small' precision={0.5} /> 3.5 & up
-                  </>
+                  </div>
                 }
               />
               <FormControlLabel
                 value='3'
                 control={<Radio />}
                 label={
-                  <>
+                  <div className='filter-sidebar__wrapper__rating__list__item'>
                     <Rating value={3} readOnly size='small' precision={0.5} /> 3 & up
-                  </>
+                  </div>
                 }
               />
               <FormControlLabel
                 value='2.5'
                 control={<Radio />}
                 label={
-                  <>
+                  <div className='filter-sidebar__wrapper__rating__list__item'>
                     <Rating value={2.5} readOnly size='small' precision={0.5} /> 2.5 & up
-                  </>
+                  </div>
                 }
               />
               <FormControlLabel
                 value='2'
                 control={<Radio />}
                 label={
-                  <>
+                  <div className='filter-sidebar__wrapper__rating__list__item'>
                     <Rating value={2} readOnly size='small' precision={0.5} /> 2 & up
-                  </>
+                  </div>
                 }
               />
               <FormControlLabel
                 value='1.5'
                 control={<Radio />}
                 label={
-                  <>
+                  <div className='filter-sidebar__wrapper__rating__list__item'>
                     <Rating value={1.5} readOnly size='small' precision={0.5} /> 1.5 & up
-                  </>
+                  </div>
                 }
               />
               <FormControlLabel
                 value='1'
                 control={<Radio />}
                 label={
-                  <>
+                  <div className='filter-sidebar__wrapper__rating__list__item'>
                     <Rating value={1} readOnly size='small' precision={0.5} /> 1 & up
-                  </>
+                  </div>
                 }
               />
               <FormControlLabel
                 value='0.5'
                 control={<Radio />}
                 label={
-                  <>
+                  <div className='filter-sidebar__wrapper__rating__list__item'>
                     <Rating value={0.5} readOnly size='small' precision={0.5} /> 0.5 & up
-                  </>
+                  </div>
                 }
               />
             </RadioGroup>
