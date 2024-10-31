@@ -1,7 +1,8 @@
-@import '@/theme/scss/colors.theme.scss';
+@use '@/theme/scss/colors.theme.scss' as *;
 
 header {
   position: relative;
+
   // ipads
   @media screen and (max-width: 1074px) {
     .navbar-menu-wrapper {
@@ -22,6 +23,11 @@ header {
   @media screen and (min-width: 1075px) {
     .navbar-menu-wrapper {
       display: flex;
+
+      ul > li:hover {
+        color: $colors-text-quaternary;
+        cursor: pointer;
+      }
 
       &-open {
         display: flex;
@@ -49,7 +55,7 @@ header {
     width: 100%;
     cursor: pointer;
     transform: translateY(0px);
-    opacity: 0.9;
+    opacity: 0.98;
     transition: transform 1s ease, opacity s ease;
 
     li {
@@ -57,12 +63,31 @@ header {
     }
 
     li:hover {
-      background-color: black;
-      color: #fff;
+      background-color: $colors-secondary;
+      color: $colors-tertiary;
+    }
+
+    li:last-child {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .header-user-info {
+      @media screen and (max-width: 1074px) {
+        display: none;
+      }
     }
   }
 
   .nav-menu-hidden {
     display: none;
   }
+}
+
+footer {
+  background: $colors-secondary;
 }

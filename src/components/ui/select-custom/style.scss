@@ -1,0 +1,7 @@
+.select-custom {
+  min-width: 100px;
+
+  @media screen and (max-width: 540px) {
+    max-width: 80px;
+  }
+}

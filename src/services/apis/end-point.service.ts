@@ -1,5 +1,7 @@
 export const ENDPOINTS = {
   product: {
-    base: 'https://fakestoreapi.com/products'
+    //TODO: Change to url from env
+    base: 'https://fakestoreapi.com/products',
+    categories: 'https://fakestoreapi.com/products/categories'
   }
 }

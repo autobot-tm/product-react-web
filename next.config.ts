@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
         locale: false
       }
     ]
+  },
+  images: {
+    domains: ['avatar.iran.liara.run', 'fakestoreapi.com']
   }
 }
 

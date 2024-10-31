@@ -1,0 +1,20 @@
+.category-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 36px;
+  font-style: 14px;
+  width: 100%;
+
+  &__select {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  select {
+    padding: 8px 14px;
+    border-radius: 28px;
+    border: 1px solid #ccc;
+  }
+}

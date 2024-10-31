@@ -1,0 +1,143 @@
+@use '@/theme/scss/colors.theme.scss' as *;
+
+.cart-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 0;
+
+  @media (max-width: 1280px) {
+    padding: 50px 30px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: 500;
+
+      @media (max-width: 540px) {
+        font-size: 2em;
+      }
+    }
+
+    .underline {
+      text-decoration: underline;
+    }
+  }
+
+  &__main__table {
+    width: 100%;
+    padding: 20px 0;
+
+    &__header,
+    &__body {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      gap: 120px;
+      padding: 40px 0;
+      border-bottom: 0.4px solid #ccc;
+    }
+
+    &__header .title > h2:nth-child(1) {
+      width: 25%;
+    }
+
+    &__body__item {
+      display: flex;
+      flex-direction: column;
+      gap: 100px;
+      width: 100%;
+    }
+
+    div.title,
+    &__body__item__row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      color: $colors-text-quaternary;
+    }
+
+    div.product-info {
+      display: flex;
+      align-items: center;
+      width: 30%;
+      gap: 50px;
+
+      @media (max-width: 540px) {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        width: 25%;
+        gap: 10px;
+      }
+    }
+
+    div.total {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    p.title {
+      white-space: normal;
+
+      @media (max-width: 540px) {
+        text-align: center;
+        font-size: 0.8em;
+      }
+    }
+
+    .price {
+      font-size: 1rem;
+      font-weight: 600;
+      color: $colors-text-primary;
+    }
+
+    &__footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 20px;
+      text-align: right;
+      width: 100%;
+      padding: 100px 0;
+
+      &__total {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+      }
+
+      p.total-price {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $colors-text-quinary;
+      }
+
+      &__description {
+        font-size: 0.8rem;
+        color: $colors-text-quaternary;
+      }
+    }
+  }
+  .empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40vh;
+  }
+}

@@ -3,29 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.5",
+    "@mui/material": "^6.1.5",
+    "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",
     "next": "15.0.1",
+    "notistack": "^3.0.1",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",
-    "sass": "^1.80.4"
+    "react-loading-indicators": "^1.0.0",
+    "react-redux": "^9.1.2",
+    "react-window": "^1.8.10",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-window": "^1.8.8",
     "@typescript-eslint/eslint-plugin": "^8.11.0",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.37.2",
     "globals": "^15.11.0",
     "postcss": "^8",
+    "sass": "^1.80.4",
+    "sass-loader": "^16.0.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "typescript-eslint": "^8.11.0"
