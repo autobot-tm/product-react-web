@@ -1,9 +1,7 @@
 'use client'
 
-// React Imports
 import type { ReactNode } from 'react'
 
-// MUI Imports
 import Zoom from '@mui/material/Zoom'
 import { styled } from '@mui/material/styles'
 import useScrollTrigger from '@mui/material/useScrollTrigger'

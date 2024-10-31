@@ -13,7 +13,6 @@ const ReduxProvider = ({ children }: { children: ReactNode }) => {
 
   if (!storeRef.current) {
     storeRef.current = store()
-    console.log('run store')
   }
 
   return <Provider store={storeRef.current}>{children}</Provider>

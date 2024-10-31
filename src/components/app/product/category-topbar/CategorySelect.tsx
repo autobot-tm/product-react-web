@@ -9,13 +9,14 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import type { ProductCategory } from '@/types'
 
 import { getCategory } from '@/utils/getCategory'
+
 interface ISelectCustom {
   onChange: (onChange: string) => void
   categories: ProductCategory[]
   selectedCategory: string
 }
 
-export default function CategorySelect({ onChange, categories = [], selectedCategory }: ISelectCustom) {
+const CategorySelect: React.FC<ISelectCustom> = ({ onChange, categories = [], selectedCategory }) => {
   const handleChange = useCallback((event: SelectChangeEvent) => {
     const category = getCategory(event.target.value)
     onChange(category)
@@ -41,3 +42,5 @@ export default function CategorySelect({ onChange, categories = [], selectedCate
     </FormControl>
   )
 }
+
+export default React.memo(CategorySelect)

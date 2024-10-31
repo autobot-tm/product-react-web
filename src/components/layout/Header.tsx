@@ -12,6 +12,7 @@ import { useAppSelector } from '@/redux-store/hooks'
 import CartIcon from '@/assets/svg/Cart'
 import NotificationIcon from '@/assets/svg/Notification'
 import { navPop } from '@/assets/png'
+
 import '@/components/layout/style.scss'
 
 const Header = () => {
@@ -35,7 +36,6 @@ const Header = () => {
           <li>FAQ's</li>
         </ul>
       </div>
-
       <div className='nav-icon-wrapper flex items-center gap-[18px]'>
         <NotificationNav totalItems={totalItems} />
       </div>
@@ -46,7 +46,7 @@ const Header = () => {
         className='nav-toggle cursor-pointer h-[50px] w-[50px] flex items-center justify-center'
         onClick={toggleMenu}
       >
-        <img src={navPop.src} alt='navPop' />
+        <Image src={navPop.src} alt='navPop' width={50} height={50} priority blurDataURL={navPop.src} />
         <ul className={`nav-menu-${isMenuOpen ? 'open' : 'hidden'}`}>
           <li>Category</li>
           <li>Brand</li>
@@ -88,7 +88,7 @@ const NotificationNav: React.FC<{ totalItems: number }> = ({ totalItems }) => {
             style={{ width: 'auto', height: 'auto' }}
           />
         </figure>
-        <span>
+        <span className='header-user-info'>
           <p className='text-[12px] text-[#C0C3C6]'>Good Morning!</p>
           <h6 className='text-[16px] text-[#1D364D] font-bold'>KVY CEO</h6>
         </span>

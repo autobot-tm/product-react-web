@@ -22,8 +22,7 @@ const ProductItem: React.FC<IProduct> = ({ id, image, title, price, rating }) =>
   const handleAddToCart = () => {
     dispatch(addToCart({ id, title, price, image }))
     enqueueSnackbar(`You have added ${title} to the cart`, {
-      variant: 'success',
-      anchorOrigin: { vertical: 'top', horizontal: 'right' }
+      variant: 'success'
     })
   }
 
@@ -43,7 +42,7 @@ const ProductItem: React.FC<IProduct> = ({ id, image, title, price, rating }) =>
         </span>
         <span className='card-item__content__button'>
           <button onClick={handleAddToCart}>Add To Cart</button>
-          <button>Buy Now</button>
+          <button onClick={() => alert('coming soon')}>Buy Now</button>
         </span>
       </div>
     </div>

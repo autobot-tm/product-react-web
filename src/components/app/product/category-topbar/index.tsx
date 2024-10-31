@@ -1,17 +1,18 @@
 import React, { useCallback } from 'react'
 
+import './style.scss'
+
 import useSWR from 'swr'
+
+import type { FilterType } from '@/views/app/product'
+
+import { SORT_OPTIONS } from '@/constants/sortOptions.constant'
 
 import SelectCustom from '@/components/ui/select-custom'
 import CategorySelect from './CategorySelect'
 
 import { ENDPOINTS } from '@/services/apis/end-point.service'
 import { getAllCategory } from '@/services/apis/product.service'
-
-import type { FilterType } from '@/views/app/product'
-import { SORT_OPTIONS } from '@/constants/sortOptions.constant'
-
-import './style.scss'
 
 interface ICategoryTopbar {
   onSelect: (onSelect: string) => void

@@ -12,7 +12,7 @@ import type { IProduct } from '@/types'
 
 import LazyLoading from '@/components/LazyLoading'
 import FilterSidebar from '@/components/app/product/filer-sidebar'
-import ProductItem from '@/components/app/product/product-item'
+import ProductItem from '@/components/app/product/card-item'
 import CategoryTopbar from '@/components/app/product/category-topbar'
 
 import { getProducts } from '@/services/apis/product.service'
@@ -131,7 +131,6 @@ const ProductManagement: React.FC = () => {
             variant='outlined'
             placeholder='Search...'
             size='small'
-            className='search-input'
           />
           <IconButton type='submit' aria-label='search'>
             <SearchOutlined style={{ fill: '#0d3356' }} />
