@@ -5,7 +5,7 @@ import useSWR from 'swr'
 
 import Image from 'next/image'
 
-import { IconButton, TextField } from '@mui/material'
+import { Fab, IconButton, Link, TextField } from '@mui/material'
 import { SearchOutlined } from '@mui/icons-material'
 
 import type { IProduct } from '@/types'
@@ -21,6 +21,7 @@ import { ENDPOINTS } from '@/services/apis/end-point.service'
 
 import { emptyArchive, heroImg } from '@/assets/png'
 import './style.scss'
+import Cart from '@/assets/svg/Cart'
 
 export type FilterType = {
   rating: string | null
@@ -108,7 +109,7 @@ const ProductManagement: React.FC = () => {
             <p className='content-section-wrapper__title'>Grab Upto 50% Off On Selected Headphone</p>
             <button className='content-section-wrapper__button'>Buy Now</button>
           </span>
-          <figure style={{ width: 'auto' }}>
+          <figure>
             <Image
               src={heroImg.src}
               alt='hero-img'
@@ -116,7 +117,6 @@ const ProductManagement: React.FC = () => {
               height={300}
               priority
               blurDataURL={heroImg.src}
-              style={{ width: 'auto', height: 'auto' }}
             />
           </figure>
         </div>
@@ -174,6 +174,12 @@ const ProductManagement: React.FC = () => {
               </figure>
             )}
           </div>
+        </div>
+
+        <div className='cart-float-btn'>
+          <Fab color='inherit' aria-label='add' LinkComponent={Link} href='/cart'>
+            <Cart />
+          </Fab>
         </div>
       </div>
     </>

@@ -72,6 +72,7 @@
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
+  position: relative;
 
   &__search-bar {
     display: flex;
@@ -88,6 +89,14 @@
       @media screen and (max-width: 768px) {
         width: 100%;
       }
+    }
+  }
+
+  .cart-float-btn {
+    @media screen and (max-width: 1074px) {
+      position: fixed;
+      bottom: 40px;
+      right: 85px;
     }
   }
 }
