@@ -61,7 +61,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
                 control={<Radio />}
                 label={
                   <div className='filter-sidebar__wrapper__rating__list__item'>
-                    <Rating value={5} readOnly size='small' precision={0.5} /> 5 & up
+                    <Rating value={5} readOnly size='small' precision={0.5} /> 5
                   </div>
                 }
               />

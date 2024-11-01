@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react'
 
-import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { Badge } from '@mui/material'
 
@@ -28,7 +28,10 @@ const Header = () => {
   return (
     <header className='text-white px-[60px] h-[90px] flex items-center justify-between border-b border-[#EDEDED]'>
       <div className='flex items-center gap-[60px] navbar-menu-wrapper'>
-        <h1 className='text-[32.8px] italic font-black text-[#0D3356]'>FashionHub</h1>
+        <Link href='/product-management'>
+          <h1 className='text-[32.8px] italic font-black text-[#0D3356]'>FashionHub</h1>
+        </Link>
+
         <ul className='flex items-center gap-[50px] text-[#1D364D]'>
           <li>Category</li>
           <li>Brand</li>
@@ -41,7 +44,9 @@ const Header = () => {
       </div>
 
       {/* Mobile Menu */}
-      <h1 className='nav-toggle text-[32.8px] italic font-black text-[#0D3356]'>FashionHub</h1>
+      <Link href='/product-management'>
+        <h1 className='nav-toggle text-[32.8px] italic font-black text-[#0D3356]'>FashionHub</h1>
+      </Link>
       <figure
         className='nav-toggle cursor-pointer h-[50px] w-[50px] flex items-center justify-center'
         onClick={toggleMenu}
