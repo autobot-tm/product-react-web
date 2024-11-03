@@ -98,6 +98,10 @@
       bottom: 40px;
       right: 85px;
     }
+
+    @media screen and (min-width: 1075px) {
+      display: none;
+    }
   }
 }
 
