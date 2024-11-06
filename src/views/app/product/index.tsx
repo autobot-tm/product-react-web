@@ -5,7 +5,7 @@ import useSWR from 'swr'
 
 import Image from 'next/image'
 
-import { Fab, IconButton, Link, TextField } from '@mui/material'
+import { Badge, Fab, IconButton, Link, TextField } from '@mui/material'
 import { SearchOutlined } from '@mui/icons-material'
 
 import type { IProduct } from '@/types'
@@ -22,6 +22,7 @@ import { ENDPOINTS } from '@/services/apis/end-point.service'
 import { emptyArchive, heroImg } from '@/assets/png'
 import './style.scss'
 import Cart from '@/assets/svg/Cart'
+import { useAppSelector } from '@/redux-store/hooks'
 
 export type FilterType = {
   rating: string | null
@@ -32,6 +33,10 @@ export type FilterType = {
 const ProductManagement: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('popularity')
   const [searchQuery, setSearchQuery] = useState<string>('')
+  const { items } = useAppSelector(state => state.cart)
+
+  const totalItems = items?.length
+
   const [filters, setFilters] = useState<FilterType>({
     rating: '0.5',
     price: 1000,
@@ -178,7 +183,9 @@ const ProductManagement: React.FC = () => {
 
         <div className='cart-float-btn'>
           <Fab color='inherit' aria-label='add' LinkComponent={Link} href='/cart'>
-            <Cart />
+            <Badge badgeContent={totalItems} color='primary'>
+              <Cart />
+            </Badge>
           </Fab>
         </div>
       </div>

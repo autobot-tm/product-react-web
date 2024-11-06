@@ -17,6 +17,10 @@ header {
       display: flex;
       cursor: pointer;
     }
+
+    .desktop-device {
+      display: none;
+    }
   }
 
   // desktops
@@ -35,6 +39,10 @@ header {
     }
 
     .nav-toggle {
+      display: none;
+    }
+
+    .mobile-device {
       display: none;
     }
   }
